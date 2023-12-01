@@ -1,0 +1,6 @@
+.body {
+    background-color: #f6f6f6;
+}
+.body .MuiCardMedia-div{
+    overflow: hidden;
+}
