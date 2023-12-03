@@ -8,6 +8,9 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import CardMedia from '@mui/material/CardMedia';
+import '../styles/dialog.css'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -43,9 +46,11 @@ export default function ProductDialog({ data, open, setOpen }) {
                 open={open}
                 maxWidth='md'
                 sx={{
+                    
                     padding: '3rem',
-                    maxHeight: '100%'
+
                 }}
+                style={{ maxHeight: 'none', maxWidth: 'none', overflowY: 'none' }}
             >
                 <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
                     ID: {data.id}
@@ -63,26 +68,29 @@ export default function ProductDialog({ data, open, setOpen }) {
                     <CloseIcon />
                 </IconButton>
                 <DialogContent /* dividers */>
-                    <Typography gutterBottom>
-                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                        dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                        consectetur ac, vestibulum at eros.
-                    </Typography>
-                    <Typography gutterBottom>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-                        Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-                    </Typography>
-                    <Typography gutterBottom>
-                        Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-                        magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-                        ullamcorper nulla non metus auctor fringilla.
-                    </Typography>
+                    <Box sx={{ display: 'flex'/* , height:'100%' */}}>
+
+                        <img src={data.images[0]} alt={data.title} />
+                        <Box sx={{ /* border: '2px solid black', */display:'flex', flexDirection:'column', gap:'1rem', padding:'2rem' }}>
+                            <Typography gutterBottom variant="h4" component="div">
+                                {data.title.toUpperCase()}
+                            </Typography>
+                            <Typography gutterBottom>
+                                {data.description}
+                            </Typography>
+                            <DialogActions>
+                                <Button  variant='contained' autoFocus onClick={handleClose}>
+                                    BUY NOW
+                                </Button>
+                                <Button  variant='contained' autoFocus onClick={handleClose}>
+                                    ADD TO CART
+                                </Button>
+                            </DialogActions>
+                        </Box>
+
+
+                    </Box>
                 </DialogContent>
-                <DialogActions>
-                    <Button autoFocus onClick={handleClose}>
-                        Save changes
-                    </Button>
-                </DialogActions>
             </Dialog>
         </React.Fragment>
     );

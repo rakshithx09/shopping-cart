@@ -1,0 +1,25 @@
+.MuiDialog-root .MuiPaper-root{
+    overflow-y: visible;
+    max-height: none;
+    max-width: none;
+    min-height: 75vh;
+    min-width: 80vw;
+}
+.MuiDialog-root .MuiDialogActions-root{
+    justify-content: flex-start;
+}
+.MuiDialog-root .MuiDialogActions-root .MuiButtonBase-root{
+    background-color: green;
+}
+.MuiDialog-root .MuiDialogContent-root {
+    height: 100%;
+    overflow-y: visible;
+    background-color:'#f6f6f6'
+}
+.MuiDialog-root .MuiDialogContent-root .MuiBox-root{
+    height: 100%;
+}
+.MuiDialogContent-root .MuiBox-root img{
+    width: 50%;
+    height: 100%;
+}

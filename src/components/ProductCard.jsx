@@ -22,7 +22,7 @@ function ProductCard({ data }) {
   return (
     <>
     <div onClick={handleClickOpen}>
-    <Card sx={{ width: '350px', position: 'relative', paddingBottom: '3.5rem' }} elevation={4} >
+    <Card sx={{ width: '350px', position: 'relative', paddingBottom: '3.5rem', height:'500px' }} elevation={4} >
       <CardMedia
         component="div"
         image={data.images[0]}
