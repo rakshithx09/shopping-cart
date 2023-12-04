@@ -5,22 +5,24 @@ import Container from '@mui/material/Container';
 export default function Main() {
     const [data, setData] = useState([]);
     useEffect(() => {
+        console.log("fetching");
+        fetch('https://dummyjson.com/products?limit=80')
+         .then(res => res.json())
+         .then(response => {
+             setData([...response.products]);
+         })
+         .catch(error => {
+             console.error('Error fetching data:', error);
+         });
         /* let data = fetch('https://fakestoreapi.com/products/')
             .then(response => response.json())
             .then(response => console.log(response)) */
 
-        fetch('https://dummyjson.com/products?limit=80')
-            .then(res => res.json())
-            .then(response => {
-                setData([...response.products]);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
+        
         /*  fetch('https://fakestoreapi.com/products?limit=19')
          .then(res=>res.json())
          .then(json=>console.log(json)) */
-
+         
     }, []);
 
     return (<div className="body">
