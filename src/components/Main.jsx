@@ -2,11 +2,11 @@ import ProductCard from "./ProductCard";
 import { useEffect, useState } from "react";
 import Container from '@mui/material/Container';
 
-export default function Main() {
+export default function Main({cartData, setCartData}) {
     const [data, setData] = useState([]);
     useEffect(() => {
         console.log("fetching");
-        fetch('https://dummyjson.com/products?limit=80')
+        fetch('https://dummyjson.com/products?limit=20')
          .then(res => res.json())
          .then(response => {
              setData([...response.products]);
@@ -14,14 +14,6 @@ export default function Main() {
          .catch(error => {
              console.error('Error fetching data:', error);
          });
-        /* let data = fetch('https://fakestoreapi.com/products/')
-            .then(response => response.json())
-            .then(response => console.log(response)) */
-
-        
-        /*  fetch('https://fakestoreapi.com/products?limit=19')
-         .then(res=>res.json())
-         .then(json=>console.log(json)) */
          
     }, []);
 
@@ -43,7 +35,7 @@ export default function Main() {
                 {
 
 
-                    data.map((item) => (item.category != 'laptops' & item.category != 'smartphones') ? (<ProductCard key={item.id} data={item} />) : null)
+                    data.map((item) => (item.category != 'laptops' & item.category != 'smartphones') ? (<ProductCard key={item.id} data={item} cartData={cartData} setCartData={setCartData} />) : null)
                 }
 
             </Container>) : null

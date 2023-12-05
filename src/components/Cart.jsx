@@ -1,27 +1,25 @@
-import { useState } from "react";
 import Box from "@mui/material/Box";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import IconButton from '@mui/material/IconButton';
+import Typography from "@mui/material/Typography";
 import CloseIcon from '@mui/icons-material/Close';
-export default function Cart({ state, toggleDrawer }) {
+import Paper from "@mui/material/Paper";
+import CartCard from "./CartCard";
+
+export default function Cart({ state, toggleDrawer, cartData, setCartData }) {
 
     const list = () => (
         <Box
             sx={{
                 width: 700,
-                position: 'relative'
+                position: 'relative',
+                padding: '1rem'
             }}
             role="presentation"
-            onClick={toggleDrawer(/* anchor, */ false)}
+            onClick={(event) => {
+                // Prevent the click event from reaching the SwipeableDrawer
+                event.stopPropagation();
+            }}
             onKeyDown={toggleDrawer(/* anchor, */ false)}
         >
             <IconButton
@@ -31,37 +29,39 @@ export default function Cart({ state, toggleDrawer }) {
                     /* position: 'absolute',
                     right: 8,
                     top: 8, */
-                    margin: '0.5rem 0 0 0.5rem',
+                    marginBottom: '2rem',
                     color: (theme) => theme.palette.grey[500],
                 }}
             >
                 <CloseIcon />
             </IconButton>
-            {/* <List>
-                {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
-            <Divider />
-            <List>
-                {["All mail", "Trash", "Spam"].map((text, index) => (
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List> */}
+            <Typography gutterBottom variant="h5" component="div" sx={{
+                padding: '0 5%'
+            }}>
+                Your Cart
+            </Typography>
+            <Paper square={false} elevation={3} sx={{
+
+                width: '90%',
+                height: '5rem',
+
+                margin: '2rem auto'
+            }}>
+
+            </Paper>
+
+            <Box>
+                {
+                    cartData.map((item) => {
+                        return (
+
+                            <CartCard key={item.id} item={item}></CartCard>
+                            
+                        )
+                    })
+                }
+            </Box>
+
         </Box>
     );
 

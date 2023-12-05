@@ -2,11 +2,12 @@ import '../styles/navbar.css'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import IconButton from '@mui/material/IconButton';
-function Navbar({state, setState }) {
+import Badge from '@mui/material/Badge';
+function Navbar({state, setState, cartData }) {
     return <div className="nav">
         <h1 className="navHeading">ShopMart</h1>
         <ul>
-            <li><NotificationsNoneIcon fontSize='large'></NotificationsNoneIcon></li>
+            <li> <IconButton> <NotificationsNoneIcon fontSize='large'></NotificationsNoneIcon></IconButton></li>
             <li> <IconButton onClick={(event) => {
                 if (
                     event &&
@@ -17,7 +18,7 @@ function Navbar({state, setState }) {
                 }
 
                 setState(!state);
-            }}><ShoppingCartOutlinedIcon fontSize='large' ></ShoppingCartOutlinedIcon> </IconButton></li>
+            }}><Badge color="primary" badgeContent={cartData.length} max={10}><ShoppingCartOutlinedIcon fontSize='large' ></ShoppingCartOutlinedIcon></ Badge > </IconButton></li>
 
         </ul>
     </div>

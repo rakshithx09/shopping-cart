@@ -10,7 +10,7 @@ import ProductDialog from './ProductDialog';
 import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
 
-function ProductCard({ data }) {
+function ProductCard({ data, cartData, setCartData }) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -23,9 +23,9 @@ function ProductCard({ data }) {
   };
   return (
     <>
-      <div onClick={handleClickOpen}>
-        <Card sx={{ width: '350px', position: 'relative', paddingBottom: '7.5rem', height: '500px' }} elevation={4} >
-          <CardMedia
+      <div className="cardContainer" /* onClick={handleClickOpen} */>
+        <Card sx={{cursor:'pointer', width: '350px', position: 'relative', paddingBottom: '7.5rem', height: '500px', marginBottom:'1rem' }} elevation={4} >
+          <CardMedia onClick={handleClickOpen}
             component="div"
             image={data.images[0]}
             title="green iguana"
@@ -35,7 +35,7 @@ function ProductCard({ data }) {
               backgroundPosition: 'centre'
             }}
           />
-          <CardContent sx={{ zIndex: '3' }}>
+          <CardContent sx={{ zIndex: '3' }} onClick={handleClickOpen}>
             <Typography /* gutterBottom  */variant="h6" component="div">
               {data.title.toUpperCase()}
             </Typography>
@@ -49,7 +49,7 @@ function ProductCard({ data }) {
             </Typography>
 
           </CardContent>
-          <CardActions sx={{ position: 'absolute', bottom: '0.5rem', right: '0.5rem' }}>
+          <CardActions sx={{ position: 'absolute', bottom: '0.5rem', right: '0.5rem', zIndex:'3' }}>
             <Button size="small" variant='contained' sx={{
               '&:hover': {
                 backgroundColor: 'green',
@@ -61,7 +61,7 @@ function ProductCard({ data }) {
                 backgroundColor: 'green',
               },
               backgroundColor: 'green', color: 'white'
-            }}  >Add to cart</Button>
+            }} onClick={()=>{setCartData([...cartData, {...data,count:1} ]); console.log(cartData)}} >Add to cart</Button>
           </CardActions>
 
         </Card>
