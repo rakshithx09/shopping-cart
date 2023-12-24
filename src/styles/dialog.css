@@ -1,16 +1,13 @@
 .MuiDialog-root .MuiPaper-root{
     overflow-y: visible;
-    /* max-height: 75vh;
-    max-width: 80vw;
-    min-height: 75vh;
-    min-width: 80vw; */
-    height: 75vh/* 100% */;
-    width: 85vw /* 100% */;
-   /*  border: 5px solid purple; */
+    height: 100vh;
+    width: 95vw ;
+   margin: 0;
 }
 .MuiBox-root .MuiDialog-container{
     /* width: 100%;
     flex-grow: 1; */
+
 }
 .MuiDialog-root .MuiDialogActions-root{
     justify-content: flex-start;
@@ -19,6 +16,7 @@
     background-color: green;
 }
 .MuiDialog-root .MuiDialogContent-root {
+    padding: 0;
     height: 100%;
     overflow-y: hidden;
     background-color:#f6f6f6;
@@ -31,4 +29,33 @@
 .MuiDialogContent-root .MuiBox-root img{
     width: 50%;
     height: 100%;
+}
+@media only screen and (max-width:1050px) {
+    .MuiDialogContent-root .MuiBox-root img{
+        width: 95%;
+        /* height: 50%; */
+        height: 350px;
+        margin:  0 auto ;
+    }
+}
+@media only screen and (max-width:1050px) {
+    .MuiDialog-root .MuiPaper-root{
+        
+        height: auto;
+        
+    }
+}
+@media only screen and (max-width:450px) {
+    .MuiDialogContent-root .MuiBox-root img{
+        
+        height: 250px;
+    }
+    .MuiDialog-root .MuiPaper-root .MuiDialogActions-root {
+        margin: auto;
+    }
+}
+
+.MuiDialog-root .MuiPaper-root .MuiDialogActions-root {
+    margin-left: auto;
+    margin-top: auto;
 }

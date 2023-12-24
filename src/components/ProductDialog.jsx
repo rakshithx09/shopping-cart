@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
@@ -10,8 +10,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CardMedia from '@mui/material/CardMedia';
-import '../styles/dialog.css'
+import '../styles/dialog.css';
 import Rating from '@mui/material/Rating';
+import { addToCart } from './ProductCard';
+import { useTheme } from '@emotion/react';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -22,7 +24,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
 }));
 
-export default function ProductDialog({ data, open, setOpen }) {
+export default function ProductDialog({ data, open, setOpen, cartData, setCartData }) {
+    const theme = useTheme();
     /* const [open, setOpen] = useState(false);
   
     const handleClickOpen = () => {
@@ -48,7 +51,7 @@ export default function ProductDialog({ data, open, setOpen }) {
                 maxWidth='xl'
                 sx={{
 
-                    /* padding: '3rem', */
+                    height:'100vh'
 
                 }}
                 style={{ maxHeight: 'none', maxWidth: 'none', overflowY: 'none' }}
@@ -69,26 +72,69 @@ export default function ProductDialog({ data, open, setOpen }) {
                     <CloseIcon />
                 </IconButton>
                 <DialogContent /* dividers */>
-                    <Box sx={{ display: 'flex'/* , height:'100%' */ }}>
+                    <Box sx={{ display: 'flex',
+                    
+                    [  theme.breakpoints.down('lg')]: {
+                        flexDirection:'column'
+                      },
+                    }}>
 
                         <img src={data.images[0]} alt={data.title} />
-                        <Box sx={{ /* border: '2px solid black', */display: 'flex', flexDirection: 'column', gap: '0.5rem', padding: '2rem' }}>
-                            <Typography /* gutterBottom */ variant="h4" component="div">
+                        <Box sx={{ 
+                            /* border: '2px solid black', */
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '0.5rem',
+                            padding:'2rem ',
+                            [theme.breakpoints.down('md')]: {
+                                padding:'15px 25px  ',
+                            },
+                             }}>
+                            <Typography /* gutterBottom */
+                                sx={{
+                                    
+                                    [theme.breakpoints.down('xl')]: {
+                                        fontSize: '1.5rem'
+                                    },
+                                    /* [theme.breakpoints.down('md')]: {
+                                        fontSize: '2rem'
+                                    }, */
+
+                                }} variant="h4" component="div">
                                 {data.title.toUpperCase()}
                             </Typography>
-                            <Box sx={{display:'flex'}}>
-                            <Rating size='small' precision={0.1} name="read-only" value={data.rating} readOnly sx={{display:'flex', alignItems:'center'}} />
-                            <Typography>({Math.floor(Math.random() * (1000 )) + 1})</Typography>
+                            <Box sx={{ display: 'flex' }}>
+                                <Rating size='small' precision={0.1} name="read-only" value={data.rating} readOnly sx={{ display: 'flex', alignItems: 'center' }} />
+                                <Typography>({Math.floor(Math.random() * (1000)) + 1})</Typography>
                             </Box>
-                            <Typography variant='h5'>Rs. {data.price}</Typography>
-                            <Typography gutterBottom>
+                            <Typography
+                                sx={{
+                                    [theme.breakpoints.down('xl')]: {
+                                        fontSize: '1.5rem'
+                                    },
+                                    [theme.breakpoints.down('lg')]: {
+                                       /*  fontSize: '1.2rem' */
+                                    },
+                                }} variant='h5'>Rs. {data.price}</Typography>
+                            <Typography sx={{
+                                [theme.breakpoints.down('lg')]: {
+                                    fontSize: '1.2rem'
+                                },
+                                [theme.breakpoints.down('md')]: {
+                                    fontSize: '1rem'
+                                },
+                                [theme.breakpoints.down('sm')]: {
+                                    fontSize: '0.8rem'
+                                },
+                            }} gutterBottom>
                                 {data.description}
                             </Typography>
-                            <DialogActions>
-                                <Button variant='contained' autoFocus onClick={handleClose}>
+                            <DialogActions 
+                            sx={{padding:0}}>
+                                <Button size='large' variant='contained' autoFocus onClick={handleClose}>
                                     BUY NOW
                                 </Button>
-                                <Button variant='contained' autoFocus onClick={handleClose}>
+                                <Button size='large' variant='contained' autoFocus onClick={() => { addToCart(data, cartData, setCartData) }}>
                                     ADD TO CART
                                 </Button>
                             </DialogActions>

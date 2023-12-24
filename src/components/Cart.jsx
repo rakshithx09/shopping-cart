@@ -7,7 +7,7 @@ import Paper from "@mui/material/Paper";
 import CartCard from "./CartCard";
 
 export default function Cart({ state, toggleDrawer, cartData, setCartData }) {
-
+    /* console.log(cartData); */
     const list = () => (
         <Box
             sx={{
@@ -54,8 +54,8 @@ export default function Cart({ state, toggleDrawer, cartData, setCartData }) {
                 {
                     cartData.map((item) => {
                         return (
-
-                            <CartCard key={item.id} item={item}></CartCard>
+ 
+                            <CartCard key={item.id} item={item} cartData={cartData} setCartData={setCartData} ></CartCard>
                             
                         )
                     })

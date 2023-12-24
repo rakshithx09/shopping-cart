@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Main from './components/Main'
 import Cart from './components/cart'
 
+
 function App() {
   const [cartData, setCartData] = useState([]);
   const [state, setState] = useState(false);
@@ -22,7 +23,7 @@ function App() {
     <Navbar state={state} setState={setState} toggleDrawer={toggleDrawer} cartData={cartData}/>
     <Main cartData={cartData} setCartData={setCartData} ></Main>
     <Cart state={state} setState={setState} toggleDrawer={toggleDrawer} cartData={cartData} setCartData={setCartData} ></Cart>
-
+   
   </>
 }
 
