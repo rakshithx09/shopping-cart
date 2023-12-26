@@ -12,4 +12,9 @@ const theme = createTheme({
       },
     },
   });
-  export default theme ;
+  const fonts={
+    'kanit': 'Kanit, sans-serif',
+    'nuonito': 'Nunito, sans-serif',
+    'nuonitoSans': 'Nunito Sans, sans-serif'
+  }
+  export /* default */ {theme,fonts} ;

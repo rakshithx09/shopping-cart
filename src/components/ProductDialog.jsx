@@ -14,6 +14,7 @@ import '../styles/dialog.css';
 import Rating from '@mui/material/Rating';
 import { addToCart } from './ProductCard';
 import { useTheme } from '@emotion/react';
+import { fonts } from '../theme';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -24,7 +25,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
 }));
 
-export default function ProductDialog({ data, open, setOpen, cartData, setCartData }) {
+export default function ProductDialog({ data, open, setOpen, cartData, setCartData, handleSnackClose, handleSnackClick }) {
     const theme = useTheme();
     /* const [open, setOpen] = useState(false);
   
@@ -91,8 +92,9 @@ export default function ProductDialog({ data, open, setOpen, cartData, setCartDa
                             },
                              }}>
                             <Typography /* gutterBottom */
+                                
                                 sx={{
-                                    
+                                    fontFamily:fonts.nuonito,
                                     [theme.breakpoints.down('xl')]: {
                                         fontSize: '1.5rem'
                                     },
@@ -117,6 +119,7 @@ export default function ProductDialog({ data, open, setOpen, cartData, setCartDa
                                     },
                                 }} variant='h5'>Rs. {data.price}</Typography>
                             <Typography sx={{
+                                fontFamily:fonts.nuonitoSans,
                                 [theme.breakpoints.down('lg')]: {
                                     fontSize: '1.2rem'
                                 },

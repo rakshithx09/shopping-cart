@@ -1,6 +1,6 @@
 .nav {
     /* border: 2px solid black; */
-    background-color:#dcdcdc;
+    background-color:#ededed;
     display: flex;
     height: 4.4rem;
     align-items: center;
@@ -19,9 +19,9 @@
     /* border: 2px solid red; */
 }
 
-.nav h1 {
+/* .nav h1 {
     margin-left: 3rem;
-}
+} */
 
 li {
     display: flex;
