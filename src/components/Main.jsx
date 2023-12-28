@@ -10,14 +10,16 @@ import ProgressBar from "./ProgressBar";
 import Snackbar/* , { SnackbarOrigin } */ from '@mui/material/Snackbar';
 import { Box } from "@mui/material";
 
-export default function Main({ cartData, setCartData }) {
+export default function Main({ cartData, setCartData, pallete }) {
     const [snackState, setSnackState] = useState({
         open: false,
         vertical: 'bottom',
         horizontal: 'left',
     });
+
     const { vertical, horizontal, open } = snackState;
 
+    
     const handleSnackClick = () => {
         setSnackState({ ...snackState, open: true });
     };
@@ -29,7 +31,7 @@ export default function Main({ cartData, setCartData }) {
     const theme = useTheme();
     useEffect(() => {
         console.log("fetching");
-        setTimeout(() => {
+        
             fetch('https://dummyjson.com/products?limit=80')
                 .then(res => res.json())
                 .then(response => {
@@ -41,13 +43,13 @@ export default function Main({ cartData, setCartData }) {
                 .catch(error => {
                     console.error('Error fetching data:', error);
                 })
-        }, 0)
+        
 
 
     }, []);
 
     return (
-        <div className="body">
+        <Box className='body' sx={{backgroundColor:pallete.surfacePrimary}} >
             {data.length != 0 ? (
                 <Container sx={{
                     display: 'flex',
@@ -77,7 +79,7 @@ export default function Main({ cartData, setCartData }) {
                     {
 
 
-                        data.map((item) => (item.category != 'laptops' & item.category != 'smartphones') ? (<ProductCard key={item.id} data={item} cartData={cartData} setCartData={setCartData} snackState={snackState} setSnackState={setSnackState} handleSnackClick={handleSnackClick} handleSnackClose={handleSnackClose} />) : null)
+                        data.map((item) => (item.category != 'laptops' & item.category != 'smartphones') ? (<ProductCard key={item.id} data={item} cartData={cartData} setCartData={setCartData} snackState={snackState} setSnackState={setSnackState} handleSnackClick={handleSnackClick} handleSnackClose={handleSnackClose} pallete={pallete} />) : null)
                     }
 
                 </Container>) :
@@ -104,7 +106,7 @@ export default function Main({ cartData, setCartData }) {
                 <ProgressBar />
                 </Box>
             </Snackbar>
-        </div>
+            </Box>
 
     )
 }

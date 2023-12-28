@@ -25,7 +25,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
 }));
 
-export default function ProductDialog({ data, open, setOpen, cartData, setCartData, handleSnackClose, handleSnackClick }) {
+export default function ProductDialog({ data, open, setOpen, cartData, setCartData, handleSnackClose, handleSnackClick , pallete}) {
     const theme = useTheme();
     /* const [open, setOpen] = useState(false);
   
@@ -51,14 +51,14 @@ export default function ProductDialog({ data, open, setOpen, cartData, setCartDa
                 open={open}
                 maxWidth='xl'
                 sx={{
-
+                   
                     height:'100vh'
 
                 }}
                 style={{ maxHeight: 'none', maxWidth: 'none', overflowY: 'none' }}
             >
-                <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-                    ID: {data.id}
+                <DialogTitle sx={{ m: 0, p: 2,  backgroundColor:pallete.surfaceSecondary, }} id="customized-dialog-title">
+                    <Typography sx={{color:pallete.textPrimary}}> ID: {data.id}</Typography>
                 </DialogTitle>
                 <IconButton
                     aria-label="close"
@@ -72,17 +72,19 @@ export default function ProductDialog({ data, open, setOpen, cartData, setCartDa
                 >
                     <CloseIcon />
                 </IconButton>
-                <DialogContent /* dividers */>
+                <DialogContent /* dividers */ sx={{}}>
                     <Box sx={{ display: 'flex',
-                    
+                    padding:'0 0 2rem 2rem',
+                    backgroundColor:pallete.surfaceSecondary,
                     [  theme.breakpoints.down('lg')]: {
-                        flexDirection:'column'
+                        flexDirection:'column',
+                        padding:'0'
                       },
                     }}>
 
                         <img src={data.images[0]} alt={data.title} />
                         <Box sx={{ 
-                            /* border: '2px solid black', */
+                            backgroundColor:pallete.surfaceSecondary,
                             display: 'flex',
                             flexDirection: 'column',
                             gap: '0.5rem',
@@ -94,6 +96,7 @@ export default function ProductDialog({ data, open, setOpen, cartData, setCartDa
                             <Typography /* gutterBottom */
                                 
                                 sx={{
+                                    color:pallete.textPrimary,
                                     fontFamily:fonts.nuonito,
                                     [theme.breakpoints.down('xl')]: {
                                         fontSize: '1.5rem'
@@ -107,10 +110,11 @@ export default function ProductDialog({ data, open, setOpen, cartData, setCartDa
                             </Typography>
                             <Box sx={{ display: 'flex' }}>
                                 <Rating size='small' precision={0.1} name="read-only" value={data.rating} readOnly sx={{ display: 'flex', alignItems: 'center' }} />
-                                <Typography>({Math.floor(Math.random() * (1000)) + 1})</Typography>
+                                <Typography sx={{color:pallete.textSecondary}} >({Math.floor(Math.random() * (1000)) + 1})</Typography>
                             </Box>
                             <Typography
                                 sx={{
+                                    color:pallete.textPrimary,
                                     [theme.breakpoints.down('xl')]: {
                                         fontSize: '1.5rem'
                                     },
@@ -119,6 +123,7 @@ export default function ProductDialog({ data, open, setOpen, cartData, setCartDa
                                     },
                                 }} variant='h5'>Rs. {data.price}</Typography>
                             <Typography sx={{
+                                color:pallete.textSecondary,
                                 fontFamily:fonts.nuonitoSans,
                                 [theme.breakpoints.down('lg')]: {
                                     fontSize: '1.2rem'
@@ -137,7 +142,7 @@ export default function ProductDialog({ data, open, setOpen, cartData, setCartDa
                                 <Button size='large' variant='contained' autoFocus onClick={handleClose}>
                                     BUY NOW
                                 </Button>
-                                <Button size='large' variant='contained' autoFocus onClick={() => { addToCart(data, cartData, setCartData) }}>
+                                <Button size='large' variant='contained' autoFocus onClick={() => { addToCart(data, cartData, setCartData); /* handleSnackClick({ vertical: 'top', horizontal: 'right' }) */ }}>
                                     ADD TO CART
                                 </Button>
                             </DialogActions>

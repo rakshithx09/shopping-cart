@@ -27,7 +27,7 @@ function addToCart(data, cartData, setCartData) {
     setCartData([...cartData, { ...data, count: 1 }]);
   }
 }
-function ProductCard({ data, cartData, setCartData, snackState, setSnackState, handleSnackClose, handleSnackClick }) {
+function ProductCard({ data, cartData, setCartData, snackState, setSnackState, handleSnackClose, handleSnackClick, pallete }) {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -55,6 +55,7 @@ function ProductCard({ data, cartData, setCartData, snackState, setSnackState, h
         flex: '1',
         position: 'relative',
         paddingBottom: '10px',
+        backgroundColor:pallete.surfaceSecondary,
         /*  */
         marginBottom: '1rem',
         [theme.breakpoints.down('md')]: {
@@ -80,10 +81,10 @@ function ProductCard({ data, cartData, setCartData, snackState, setSnackState, h
             },
           }}
         />
-        <CardContent sx={{ zIndex: '3', padding:'1rem 1rem 0' }} onClick={handleClickOpen}>
+        <CardContent sx={{ zIndex: '3', padding:'1rem 1rem 0',  }} onClick={handleClickOpen}>
           <Typography sx={{
             height:'35px',
-            /*  border:'2px solid black', */
+            color:pallete.textPrimary,
              whiteSpace: 'nowrap',
              overflow: 'hidden',
              textOverflow: 'ellipsis',
@@ -99,13 +100,14 @@ function ProductCard({ data, cartData, setCartData, snackState, setSnackState, h
           </Typography>
           <Box sx={{ display: 'flex' }}>
             <Rating size='small' precision={0.25} name="read-only" value={data.rating} readOnly sx={{ display: 'flex', alignItems: 'center' }} />
-            <Typography sx={{ fontFamily: fonts.nuonito, }}>({Math.floor(Math.random() * (1000)) + 1})</Typography>
+            <Typography sx={{ fontFamily: fonts.nuonito, color: pallete.textSecondary }}>({Math.floor(Math.random() * (1000)) + 1})</Typography>
           </Box>
           <Typography variant='h5' sx={{
             fontSize: '1.25rem',
             padding: '0.25rem 0',
             fontFamily: fonts.nuonitoSans,
             fontWeight: '600',
+            color: pallete.textPrimary,
             [theme.breakpoints.down('md')]: {
               fontSize: '1rem'
             },
@@ -116,8 +118,7 @@ function ProductCard({ data, cartData, setCartData, snackState, setSnackState, h
           <Typography sx={{
             fontFamily: fonts.nuonitoSans,
             height:'61px',
-           /*  border:'2px solid black', */
-            /* whiteSpace: 'nowrap', */
+            color: pallete.textSecondary,
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             [theme.breakpoints.down('md')]: {
@@ -149,7 +150,7 @@ function ProductCard({ data, cartData, setCartData, snackState, setSnackState, h
 
       </Card>
       {/* </div> */}
-      <ProductDialog data={data} open={open} setOpen={setOpen} cartData={cartData} setCartData={setCartData} />
+      <ProductDialog data={data} open={open} setOpen={setOpen} cartData={cartData} setCartData={setCartData} pallete={pallete} />
     </>
   )
 }

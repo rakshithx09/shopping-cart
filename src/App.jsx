@@ -3,11 +3,15 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Main from './components/Main'
 import Cart from './components/cart'
-
+import {color} from './theme.js'
 
 function App() {
   const [cartData, setCartData] = useState([]);
   const [state, setState] = useState(false);
+  const [colorTheme, setColorTheme] =useState(false)
+
+  const pallete =colorTheme ? color.dark : color.light ;
+
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event &&
@@ -20,9 +24,9 @@ function App() {
     setState(!state);
   };
   return <>
-    <Navbar state={state} setState={setState} toggleDrawer={toggleDrawer} cartData={cartData}/>
-    <Main cartData={cartData} setCartData={setCartData} ></Main>
-    <Cart state={state} setState={setState} toggleDrawer={toggleDrawer} cartData={cartData} setCartData={setCartData} ></Cart>
+    <Navbar state={state} setState={setState} toggleDrawer={toggleDrawer} cartData={cartData} setColorTheme={setColorTheme} colorTheme={colorTheme} pallete={pallete} />
+    <Main cartData={cartData} setCartData={setCartData} pallete={pallete}  ></Main>
+    <Cart state={state} setState={setState} toggleDrawer={toggleDrawer} cartData={cartData} setCartData={setCartData} pallete={pallete} colorTheme={colorTheme} ></Cart>
    
   </>
 }

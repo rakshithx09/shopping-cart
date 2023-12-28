@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import Delete from '@mui/icons-material/Delete';
 import { useTheme } from '@emotion/react';
 
-export default function CartCard({ item, cartData, setCartData }) {
+export default function CartCard({ item, cartData, setCartData, pallete }) {
     const [count, setCount] = useState(item.count);
 
     const theme = useTheme();
@@ -32,6 +32,7 @@ export default function CartCard({ item, cartData, setCartData }) {
 
     return (
         <Card sx={{
+            backgroundColor:pallete.surfaceSecondary,
             cursor: 'pointer',
             margin: 'auto',
             width: '90%',
@@ -53,7 +54,7 @@ export default function CartCard({ item, cartData, setCartData }) {
                 component="div"
                 image={item.images[0]}
                 sx={{
-                    width: '150px',
+                    width: '20%',
                     height: '150px',
                     backgroundPosition: 'centre',
                     [theme.breakpoints.down('md')]: {
@@ -68,7 +69,7 @@ export default function CartCard({ item, cartData, setCartData }) {
                 flexGrow: '1',
                 padding: '0.5rem 0',
                 [theme.breakpoints.down('md')]: {
-                    width: '55%'
+                    width: '60%'
                 },
                 [theme.breakpoints.down('sm')]: {
                     padding: '1rem 0',
@@ -91,6 +92,7 @@ export default function CartCard({ item, cartData, setCartData }) {
                             overflow: 'hidden',
                             textOverflow: 'ellipsis',
                             flexGrow: '1',
+                            color:pallete.textPrimary,
                             [theme.breakpoints.down('md')]: {
                                 fontSize: '1rem'
                             },
@@ -112,6 +114,7 @@ export default function CartCard({ item, cartData, setCartData }) {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'flexStart',
+                            color:pallete.textPrimary,
                             [theme.breakpoints.down('md')]: {
                                 fontSize: '18px',
                                 minWidth: '3rem'
@@ -131,7 +134,7 @@ export default function CartCard({ item, cartData, setCartData }) {
                                     minWidth: '35px'
                                 },
                             }} size='small' onClick={() => { /* count == 0 ? setCount(0) : setCount(count - 1) */ updateCount(1) }} ><RemoveIcon></RemoveIcon></Button>
-                            <Typography>{item.count}</Typography>
+                            <Typography sx={{color:pallete.textPrimary}}>{item.count}</Typography>
                             <Button sx={{
                                 [theme.breakpoints.down('md')]: {
                                     minWidth: '50px'
