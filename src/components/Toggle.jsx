@@ -1,8 +1,7 @@
 import '../styles/toggle.css'
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
-
-export default function Toggle({onClick, colorTheme}){
+ function Toggle({onClick, colorTheme}){
     return (
         <>
         <LightModeIcon sx={{color:colorTheme ? '#e2d6d6':''}}></LightModeIcon> 
@@ -27,3 +26,5 @@ export default function Toggle({onClick, colorTheme}){
         </>
       );
 }
+
+export default Toggle ;

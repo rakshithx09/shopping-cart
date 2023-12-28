@@ -6,9 +6,8 @@ import Badge from '@mui/material/Badge';
 import { fonts } from '../theme';
 import { Box, Typography } from '@mui/material';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
-import Toggle from './toggle';
 import { useTheme } from '@emotion/react';
-
+import Toggle from './Toggle';
 function Navbar({ state, setState, cartData, colorTheme, setColorTheme, pallete }) {
     const theme = useTheme();
     return (<Box className="nav" sx={{ backgroundColor: pallete.surfacePrimary }}>

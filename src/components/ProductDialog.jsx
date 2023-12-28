@@ -9,7 +9,6 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import CardMedia from '@mui/material/CardMedia';
 import '../styles/dialog.css';
 import Rating from '@mui/material/Rating';
 import { addToCart } from './ProductCard';
@@ -27,14 +26,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 export default function ProductDialog({ data, open, setOpen, cartData, setCartData, handleSnackClose, handleSnackClick , pallete}) {
     const theme = useTheme();
-    /* const [open, setOpen] = useState(false);
-  
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
-    const handleClose = () => {
-      setOpen(false);
-    }; */
     const handleClose = () => {
         console.log("closing");
         setOpen(false);
@@ -42,9 +33,6 @@ export default function ProductDialog({ data, open, setOpen, cartData, setCartDa
 
     return (
         <React.Fragment>
-            {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Open dialog
-      </Button> */}
             <Dialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
