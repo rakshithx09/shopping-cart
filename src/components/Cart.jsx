@@ -22,6 +22,7 @@ export default function Cart({ state, toggleDrawer, cartData, setCartData, palle
                 width: 700,
                 position: 'relative',
                 padding: '1rem',
+                minHeight:'250vh',
                 [theme.breakpoints.down('md')]: {
                     width: 400,
                 },
