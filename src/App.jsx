@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-import Navbar from './components/Navbar'
-import Main from './components/Main'
-import Cart from './components/cart'
+import { useState, useEffect } from 'react';
+import './App.css';
+import Navbar from './components/Navbar';
+import Main from './components/Main';
 import {color} from './theme.js'
+import Cart from '../src/components/Cart';
 
 function App() {
   const [cartData, setCartData] = useState([]);
